@@ -1,0 +1,19 @@
+{%- if jekyll.environment == "production" and site.goatcounter.code != empty -%}
+<script>
+  (function () {
+    if (window.location.hostname !== {{ site.goatcounter.production_host | jsonify }}) return;
+
+    window.goatcounter = {
+      path: function () {
+        return window.location.pathname;
+      }
+    };
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://gc.zgo.at/count.js';
+    script.dataset.goatcounter = 'https://{{ site.goatcounter.code }}.goatcounter.com/count';
+    document.head.appendChild(script);
+  })();
+</script>
+{%- endif -%}

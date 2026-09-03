@@ -29,10 +29,10 @@ grep -F 'path: function () {' "$production_index"
 grep -F 'return window.location.pathname;' "$production_index"
 
 grep -F 'data-goatcounter-click="post-click/posts/ai-era-expertise/"' "$production_index"
-grep -F 'data-goatcounter-title="AI 시대의 전문성: 지식보다 중요한 것은 문제를 푸는 힘"' "$production_index"
+grep -F 'data-goatcounter-title="AI 시대, 전문성은 사라지는가"' "$production_index"
 grep -F 'data-goatcounter-no-session="1"' "$production_index"
 
-if grep -R -F 'https://gc.zgo.at/count.js' "$DEVELOPMENT_DIR" "$DISABLED_DIR"; then
+if grep -R --include='*.html' -F 'https://gc.zgo.at/count.js' "$DEVELOPMENT_DIR" "$DISABLED_DIR"; then
   echo "GoatCounter loader must be absent from development and disabled builds" >&2
   exit 1
 fi

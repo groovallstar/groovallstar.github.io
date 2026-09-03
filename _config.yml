@@ -16,6 +16,10 @@ author:
 github:
   username: groovallstar
 
+goatcounter:
+  code: "marrh"
+  production_host: "groovallstar.github.io"
+
 # 홈 상단 인사말 (PaperMod 의 home-info 영역)
 home_info:
   title: "기록하는 개발자"

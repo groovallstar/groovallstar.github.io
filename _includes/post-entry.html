@@ -13,5 +13,10 @@
   <footer class="entry-footer">
     {{ post.date | date: "%Y년 %-m월 %-d일" }} · 읽는 데 약 {{ minutes }}분
   </footer>
-  <a class="entry-link" aria-label="{{ post.title }} 글로 이동" href="{{ post.url | relative_url }}"></a>
+  <a class="entry-link"
+     aria-label="{{ post.title }} 글로 이동"
+     href="{{ post.url | relative_url }}"
+     data-goatcounter-click="post-click{{ post.url }}"
+     data-goatcounter-title="{{ post.title | escape }}"
+     data-goatcounter-no-session="1"></a>
 </article>

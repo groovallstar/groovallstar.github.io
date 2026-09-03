@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="g">
+  <style>
+    .bg { fill: #1e1e1e; }
+    .fg { fill: #ffffff; }
+    /* 브라우저가 다크 모드면 반전 — 어두운 탭 배경에서도 또렷하게 */
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #ffffff; }
+      .fg { fill: #1d1e20; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14" />
+  <!-- baseline 을 직접 잡는다 — g 의 디센더가 아래로 나가 잘리지 않도록 -->
+  <text class="fg" x="32" y="39" text-anchor="middle"
+        font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="42" font-weight="700">g</text>
+</svg>

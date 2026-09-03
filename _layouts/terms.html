@@ -1,0 +1,24 @@
+---
+layout: default
+---
+{%- if page.term_kind == 'tags' -%}
+  {%- assign terms = site.tags -%}{%- assign base = '/tags/' -%}
+{%- else -%}
+  {%- assign terms = site.categories -%}{%- assign base = '/categories/' -%}
+{%- endif -%}
+<header class="page-header">
+  <h1>{{ page.title }}</h1>
+</header>
+{%- if terms.size > 0 -%}
+<ul class="terms-tags">
+  {%- for term in terms -%}
+  <li>
+    <a href="{{ term[0] | slugify | prepend: base | append: '/' | relative_url }}">
+      {{ term[0] }} <sup><strong>{{ term[1] | size }}</strong></sup>
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>
+{%- else -%}
+<p class="empty-note">아직 항목이 없습니다.</p>
+{%- endif -%}

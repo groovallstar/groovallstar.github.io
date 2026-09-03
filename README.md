@@ -1,39 +1,43 @@
-# Chirpy Starter
+# groovallstar.github.io
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+Jekyll 로 만든 개인 블로그. 레이아웃은 [lilianweng.github.io](https://lilianweng.github.io/) 와 같은
+PaperMod 계열 구성을 직접 구현했다 (테마 젬 없이 `_layouts` / `_includes` / `assets` 로 관리).
 
-A minimal, ready-to-use template for creating a blog with the [**Chirpy**][chirpy] Jekyll theme. Get up and running in minutes with all critical files pre-configured.
+## 로컬 실행
 
-## Why This Starter Exists
-
-When installing Chirpy through [RubyGems.org][gem], Jekyll can only read a subset of theme files (`_data`, `_layouts`, `_includes`, `_sass`, `assets`) and limited `_config.yml` options from the gem. As a result, users cannot enjoy the full out-of-the-box experience that Chirpy offers.
-
-To unlock all features, the following files must be present in your Jekyll site:
-
-```shell
-.
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
+```console
+$ bundle install
+$ bundle exec jekyll serve --livereload
 ```
 
-This starter bundles those files from the latest **Chirpy** release along with a [CD][CD] workflow, so you can start writing immediately.
+http://localhost:4000 에서 확인할 수 있다.
 
-## Usage
+## 글 쓰기
 
-Check out the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
+`_posts/YYYY-MM-DD-제목.md` 로 파일을 만들고 front matter 를 채운다.
 
-## Contributing
+```yaml
+---
+title: 글 제목
+date: 2026-08-31 10:00:00 +0900
+categories: [상위분류, 하위분류]
+tags: [태그1, 태그2]
+---
+```
 
-This repository is automatically updated with new releases from the theme repository. If you encounter any issues or want to contribute to its improvement, please visit the [theme repository][chirpy] to provide feedback.
+- `description` 을 넣으면 목록의 요약문으로 쓰인다. 없으면 첫 문단이 쓰인다.
+- `toc: false` 를 넣으면 그 글에서 목차를 감춘다.
 
-## License
+## 구조
 
-This work is published under [MIT][mit] License.
+| 경로 | 역할 |
+| --- | --- |
+| `_layouts/` | 페이지 레이아웃 (home, post, archives, terms 등) |
+| `_includes/` | head, 헤더 내비게이션, 글 목록 카드 |
+| `assets/css/main.scss` | 전체 스타일 (라이트/다크 토큰, Rouge 하이라이트) |
+| `assets/js/main.js` | 테마 토글, 목차 생성, 맨 위로 |
+| `_config.yml` | 사이트 정보, 내비게이션(`nav`), 홈 인사말(`home_info`) |
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+## 배포
+
+`main` 에 푸시하면 GitHub Actions 가 빌드해 GitHub Pages 로 배포한다.

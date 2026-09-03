@@ -1,0 +1,58 @@
+---
+layout: default
+---
+{%- assign body = content | strip_html | normalize_whitespace -%}
+{%- assign minutes = body | size | divided_by: 500.0 | ceil -%}
+{%- if minutes < 1 -%}{%- assign minutes = 1 -%}{%- endif -%}
+<article class="post-single">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    {%- if page.description -%}
+    <div class="post-description">{{ page.description }}</div>
+    {%- endif -%}
+    <div class="post-meta">
+      {{ page.date | date: "%Y년 %-m월 %-d일" }} · 읽는 데 약 {{ minutes }}분{% if page.categories and page.categories.size > 0 %} ·
+      {% for cat in page.categories %}<a href="{{ cat | slugify | prepend: '/categories/' | append: '/' | relative_url }}">{{ cat }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}{% endif %}
+    </div>
+  </header>
+
+  {%- if page.toc -%}
+  <div class="toc" id="toc" hidden>
+    <details open>
+      <summary accesskey="c" title="목차 (Alt + C)"><span class="details">목차</span></summary>
+      <div class="inner"></div>
+    </details>
+  </div>
+  {%- endif -%}
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    {%- if page.tags and page.tags.size > 0 -%}
+    <ul class="post-tags">
+      {%- for tag in page.tags -%}
+      <li><a href="{{ tag | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ tag }}</a></li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+
+    {%- if page.next or page.previous -%}
+    <nav class="paginav">
+      {%- if page.next -%}
+      <a class="prev" href="{{ page.next.url | relative_url }}">
+        <span class="title">« 이전 글</span><br>
+        <span>{{ page.next.title }}</span>
+      </a>
+      {%- endif -%}
+      {%- if page.previous -%}
+      <a class="next" href="{{ page.previous.url | relative_url }}">
+        <span class="title">다음 글 »</span><br>
+        <span>{{ page.previous.title }}</span>
+      </a>
+      {%- endif -%}
+    </nav>
+    {%- endif -%}
+  </footer>
+</article>

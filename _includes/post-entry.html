@@ -1,0 +1,17 @@
+{%- assign body = post.content | strip_html | normalize_whitespace -%}
+{%- assign minutes = body | size | divided_by: 500.0 | ceil -%}
+{%- if minutes < 1 -%}{%- assign minutes = 1 -%}{%- endif -%}
+{%- assign summary = post.description | default: post.excerpt -%}
+{%- assign summary = summary | strip_html | normalize_whitespace -%}
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>{{ post.title }}</h2>
+  </header>
+  <section class="entry-content">
+    <p>{{ summary | truncate: 200 }}</p>
+  </section>
+  <footer class="entry-footer">
+    {{ post.date | date: "%Y년 %-m월 %-d일" }} · 읽는 데 약 {{ minutes }}분
+  </footer>
+  <a class="entry-link" aria-label="{{ post.title }} 글로 이동" href="{{ post.url | relative_url }}"></a>
+</article>

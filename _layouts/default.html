@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'ko-KR' }}" dir="ltr">
+<head>
+  {%- include head.html -%}
+</head>
+<body class="{% if page.url == '/' or page.layout == 'home' %}list{% endif %}" id="top">
+  {%- include header.html -%}
+
+  <main class="main">
+    {{ content }}
+  </main>
+
+  <a href="#top" aria-label="맨 위로" class="top-link" id="top-link">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+      <path d="M12 6H0l6-6z"></path>
+    </svg>
+  </a>
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

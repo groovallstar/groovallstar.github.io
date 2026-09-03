@@ -1,19 +1,6 @@
-{%- if jekyll.environment == "production" and site.goatcounter.code != empty -%}
-<script>
-  (function () {
-    if (window.location.hostname !== {{ site.goatcounter.production_host | jsonify }}) return;
-
-    window.goatcounter = {
-      path: function () {
-        return window.location.pathname;
-      }
-    };
-
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://gc.zgo.at/count.js';
-    script.dataset.goatcounter = 'https://{{ site.goatcounter.code }}.goatcounter.com/count';
-    document.head.appendChild(script);
-  })();
-</script>
+{%- if jekyll.environment == "production" and site.goatcounter and site.goatcounter.code and site.goatcounter.code != empty and site.goatcounter.production_host and site.goatcounter.production_host != empty -%}
+<script async
+        src="{{ '/assets/js/analytics.js' | relative_url }}"
+        data-goatcounter-endpoint="https://{{ site.goatcounter.code | escape }}.goatcounter.com/count"
+        data-goatcounter-host="{{ site.goatcounter.production_host | escape }}"></script>
 {%- endif -%}

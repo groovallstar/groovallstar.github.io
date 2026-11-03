@@ -8,7 +8,7 @@ tags: [llm, gpu, cloud, naver-cloud, elice, vessl]
 
 공개 가중치 LLM을 클라우드 GPU에서 실행하고, 로컬 PC에서 API로 호출하는 용도로 네이버클라우드·엘리스클라우드·VESSL을 비교한다.
 
-> 작성·팩트체크 기준: **2026-11-03**. 월 예상액은 별도 표시가 없으면 30일(720시간) 상시 사용 기준이다.
+> 작성 기준: **2026-11-03**. 월 예상액은 별도 표시가 없으면 30일(720시간) 상시 사용 기준이다.
 
 ## 1. 사용 방식
 
@@ -116,22 +116,3 @@ tags: [llm, gpu, cloud, naver-cloud, elice, vessl]
 | 베슬 | 초기·최대 충전 한도 **공개 수치 미확인** | 온디맨드는 사전 쿼터 신청 불필요. Workspace 한 노드당 최대 **8장**. 실제 할당은 재고에 따라 대기 가능 | [요금·쿼터](https://vessl.ai/ko/pricing) · [장수 제한](https://vessl.ai/ko/cloud) · [가용성](https://docs.cloud.vessl.ai/member/workspace/create) |
 
 충전 한도·GPU 할당량·실제 재고는 서로 다르다. 위 코인 보유 한도는 월 지출 한도가 아니며, 사용 이력에 따라 한도가 자동으로 늘어나는 공통 규칙은 3사 공식 자료에서 확인하지 못했다.
-
-## 5. 팩트체크 (2026-11-03)
-
-공식 요금표·사용 가이드·FAQ를 대조하고 월 환산액을 검산했다. **유료 GPU를 실제 임대해 모델 실행·성능·최종 청구액을 측정한 결과는 아니다.** 공개 자료로 확인하지 못한 항목은 미확인으로 남겼다.
-
-| 검증 항목 | 판정 | 확인 결과·근거 |
-| --- | --- | --- |
-| 네이버 L4·L40S 단가 | 확인 | 본문의 시간·월 요금과 CPU·RAM은 공식 표와 일치. 한 장 가격은 `gp1l4-g3`·`gp1ls16-g3` 기준. [공식 요금표](https://www.ncloud.com/product/compute/gpuServer#pricing) |
-| 엘리스 A100·H100 단가 | 확인 | 일반존 온디맨드 2,500원·5,500원/시간, 초 단위 과금·VAT 별도. 공공존 10% 상향 조건을 본문에 추가. [공식 상품·요금](https://elice.io/ko/cloud/eci) |
-| VESSL L40S·A100·H100 단가 | 확인 | 각각 $1.80·$1.77·$3.57/시간. 본문은 온디맨드 Container Compute 기준. 전용 VM Cluster는 별도 견적. [공식 요금표](https://vessl.ai/ko/pricing) |
-| 월 비용·여러 장 비용 | 계산값 구분 | 네이버 월 요금은 공식 금액. 엘리스·VESSL은 720시간 환산으로 계산 일치. VESSL 공식 계산기 기본값은 730시간이라 표시액이 다를 수 있음. 약정 견적·재고 보장이 아님. [네이버](https://www.ncloud.com/product/compute/gpuServer#pricing) · [엘리스](https://elice.io/ko/cloud/pricing/eci) · [VESSL](https://vessl.ai/ko/pricing) |
-| 중지하면 무료인가 | 조건 보완 | 네이버 GPU는 정지 중에도 전체 서버 요금 발생. 엘리스 온디맨드·스팟은 Idle에서 컴퓨팅 과금 중단하나 약정형은 계약 기간 과금. VESSL Pause는 저장소 비용이 남을 수 있음. [네이버](https://guide.ncloud-docs.com/docs/server-gpuserver-vpc-kvm) · [엘리스](https://help.elice.io/help/en/docs/eci/compute/vm-lifecycle) · [VESSL](https://docs.cloud.vessl.ai/member/workspace/cleanup) |
-| 스토리지 포함·모델 재사용 | 조건 보완 | 네이버 L4·L40S 디스크와 엘리스 블록 스토리지는 별도 요금. VESSL 포함 임시 공간은 중지 시 사라짐. 영구 보관 자원은 컴퓨팅 중지 후에도 과금될 수 있음. [네이버](https://www.ncloud.com/product/compute/gpuServer#pricing) · [엘리스](https://help.elice.io/help/docs/eci/storage/block-storage) · [VESSL](https://docs.cloud.vessl.ai/member/workspace/create) |
-| 엘리스·VESSL 결제 방식 | 상품별 구분 | 엘리스 AI클라우드의 선불 크레딧을 ECI 전체에 적용할 수 없음. ECI는 기관·계약별 결제. VESSL Workspace 크레딧은 전용 VM Cluster 결제에 사용할 수 없음. [AI클라우드](https://help.elice.io/help/docs/elicecloud/introduction/) · [ECI](https://help.elice.io/help/docs/eci/billing/payment-methods) · [VM Cluster](https://docs.cloud.vessl.ai/vm-clusters/faq) |
-| 네이버 선충전 한도 | 의미 보완 | 회당 최소 1만 원·온라인 보유 최대 1,000만 원은 충전 기준. 코인 초과 사용액은 후불이므로 지출 상한이 아님. [충전 한도](https://www.ncloud.com/support/faq/all/1908) · [초과액 처리](https://www.ncloud.com/support/faq/all/1884) |
-| 신규 계정 GPU 사용 | 조건 보완 | 네이버 개인은 신청·선결제, 엘리스 ECI는 할당량 확인 필요. VESSL 사전 쿼터 신청 불필요 안내도 즉시 재고 확보를 보장하지 않음. [네이버](https://www.ncloud.com/support/faq/all/37) · [엘리스](https://help.elice.io/help/docs/eci/faq/faq-vm) · [VESSL](https://docs.cloud.vessl.ai/member/workspace/create) |
-| 공개 가중치 직접 로드 | 조건부 | GPU 서버·사용자 실행 환경에서 직접 서빙하는 경로는 확인. 모델별 라이선스·호환성·메모리는 따로 확인해야 함. 엘리스는 vLLM과 Llama 예시를 명시. [네이버 환경](https://guide.ncloud-docs.com/docs/server-gpuserver-vpc-kvm) · [엘리스 서빙](https://help.elice.io/help/en/docs/eci/tutorials/llm-inference) · [VESSL 환경](https://docs.cloud.vessl.ai/member/workspace/create) |
-| 데이터는 PC에만 남는가 | 설명 수정 | 원본 파일을 PC에 보관해도 API 요청에 담은 내용은 서버로 전달됨. 로컬 파일 보관과 클라우드 전송은 구분해야 함. [API 요청 예시](https://help.elice.io/help/en/docs/eci/tutorials/llm-inference) |
-| 미공개 한도·자동 증액 | 미확인 | 엘리스·VESSL의 공통 신규 충전 금액 상한, 3사의 사용 이력별 자동 한도 증액 규칙은 공개 자료에서 확인하지 못함. 한도가 없거나 AWS와 같다고 단정할 근거는 없음. [엘리스 결제](https://help.elice.io/help/docs/eci/billing/payment-methods) · [VESSL 결제](https://docs.cloud.vessl.ai/admin/billing/overview) |
